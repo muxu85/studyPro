@@ -1,0 +1,59 @@
+<!-- 
+  Promise：
+  promise是一门新的技术（es6规范）
+        是js中进行异步编程的解决方案
+        注：旧方案是单纯使用回调函数 
+  从语法上来说：promise是一个构造函数
+  从功能上：promise对象用来封装一个异步操作并可以获取其成功或失败的结过值
+-->
+
+<!-- 
+  异步操作举例：
+  fs文件操作
+  ——
+      require('fs').readFile('./index.html',(err,data)=>{})
+  数据库操作
+  ——
+      MySQL、MongoDB
+  ajax
+  ——
+      $.get('/server',(data)=>{})
+  定时器
+  ——
+      setTimeout(()=>{},2000)
+ -->
+
+ <!-- 
+    为什么要用Promise？
+    答：
+     1、支持链式调用，可以解决回到地狱
+     2、指定回调函数的方式更加灵活
+
+     promise流程：
+     启动异步任务；
+     返回promise对象；
+     给promise对象绑定回调函数；
+     甚至可以在异步任务结束后指定多个
+
+
+    注1——什么是回调地狱？
+        回调函数嵌套调用，外部回调函数异步执行的结果，是嵌套的回调执行的条件
+        缺点：
+        不便于阅读；不便于异常处理
+        解决方案：promise链式调用
+
+        回调地狱例子：
+        asyncFunc1(opt,(...args1)=>{
+          asyncFunc2(opt,(...args2)=>{
+            asyncFunc3(opt,(...args3)=>{
+              asyncFunc4(opt,(...args4)=>{
+                console.log('hhhhh')
+              })
+            })
+          })
+        })
+
+    注2——旧方案指定回调函数方式？
+        必须在启动任务前指定
+
+  -->

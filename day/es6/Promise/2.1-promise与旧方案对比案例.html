@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>myvue</title>
+  <script type="text/javascript" src="../../js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href=""/>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Promise 体验</h2>
+    <span>1121PengC</span>
+    <div>
+      <span>旧方案定时器 与 Promise 对比：抽奖案例</span>
+    </div>
+    <button id="btn1" class="btn1">定时器实现</button>
+    <button id="btn2" class="btn2">Promise实现</button>
+  </div>
+
+  <script type="text/javascript">
+  /*
+    点击按钮，2s后显示是否中奖（30%概率中奖）
+    若中奖，弹出 "恭喜中奖"
+    若未中奖，弹出 "未中奖，再接再厉"
+  */
+
+    // 产生随机数
+    function rand(m, n) {
+      // 返回上限值，下限值之间的一个随机数
+      return Math.ceil(Math.random() * (n-m+1)) + m-1
+    }
+
+    // 定时器实现
+    // const btn1= document.querySelector('#btn1')
+    // btn1.addEventListener('click', function(){
+    //   setTimeout(()=>{
+    //     // 30%取值思路： 取1-100中某个值，若是在30以内则为30%
+    //     // 获取1-300随机数
+    //     let num = rand(1, 300)
+    //     if (num < 30) {
+    //       alert('恭喜中奖')
+    //     } else {
+    //       alert('未中奖，再接再厉')
+    //     }
+    //   }, 2000)
+    // })
+
+    // Promise实现
+    const btn2 = document.querySelector('#btn2')
+    // resolve\reject函数类型的数据
+    btn2.addEventListener('click', function() {
+      const p = new Promise((resolve, reject) => {
+      // promise可包裹一个异步操作
+        setTimeout(()=>{
+          let num = rand(1, 300)
+          if (num < 30) {
+            // 成功时调用，将promise对象，即p的状态设置为成功
+            resolve()
+          } else {
+            // 失败时调用，将promise对象状态设置为失败
+            reject()
+          }
+        }, 1000)
+      })
+
+      // 调用then方法
+      // 接收2个参数，第一个成功时回调 ，第二个失败时回调
+      p.then(()=> {
+        alert('恭喜中奖')
+      }, ()=>{
+        alert('未中奖，再接再厉')
+      })
+    })
+   
+     
+
+
+  
+
+
+  </script>
+</body>
+</html>

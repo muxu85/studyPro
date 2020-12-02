@@ -1,0 +1,21 @@
+
+
+（一）Promise的状态改变：
+
+1.pending变为resolved
+2.pending变为rejected
+
+说明：
+只有这两种变换，且一个Promise对象只能变换一次；
+无论成功or失败，都会有一个结果数据；
+成功的结果一般称为value，失败的结果一般称为reason
+
+（二）什么是Promise的状态：
+实例对象的一个属性——PromiseState:
+状态有3种：
+pending：初始化
+resolved / fullfilled：成功
+rejected：失败
+
+用resolved将状态改为成功；
+用rejected将状态改为失败；

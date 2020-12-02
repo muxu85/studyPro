@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>myvue</title>
+  <script type="text/javascript" src="../../js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href=""/>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+
+  <div>
+    <h2>Promise 封装 AJAX请求 操作</h2>
+    <button id="btn">点击发送AJAX请求</button>
+    <button id="btn2">promise方式点击发送AJAX请求</button>
+  </div>
+
+  <script type="text/javascript">
+
+    // // AJAX方式
+    // const btn = document.querySelector('#btn')
+    // btn.addEventListener('click', function() {  
+    //   const xhr = new XMLHttpRequest()  // 1.创建对象
+    //   xhr.open('GET', 'https://api.apiopen.top/getJoke')  // 2.初始化
+    //   xhr.send() // 3.发送
+    //   xhr.onreadystatechange = function() {  // 4.处理响应结果
+    //     if(xhr.readyState === 4) {
+    //       // 判断响应状态码是否是2xx，2开头表明成功
+    //       if(xhr.status >= 200 && xhr.status < 300) {
+    //         console.log(xhr.response)     //输出响应体
+    //       } else {
+    //         console.log(xhr.status)   // 输出响应状态码
+    //       }
+    //     }
+    //   }
+    // })
+
+    // Promise方式
+    const btn = document.querySelector('#btn2')
+    btn.addEventListener('click', function() {
+      const p = new Promise((resolve, reject) => {   // 创建 Promise
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', 'https://api.apiopen.top/getJok')
+        xhr.send()
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === 4) {
+            if(xhr.status >= 200 && xhr.status < 300) {
+              resolve(xhr.response)
+            } else {
+              reject(xhr.status)
+            }
+          }
+        }
+      })
+      p.then(val => {
+        console.log(val)
+      }, reason => {
+        console.log(reason)
+      })
+    })
+
+  </script>
+</body>
+</html>
