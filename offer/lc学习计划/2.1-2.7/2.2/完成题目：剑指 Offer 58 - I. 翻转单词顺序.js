@@ -48,5 +48,9 @@ var reverseWords = function(s) {
 
 
 // 总结：
-// trim去掉空格 
+// trim() 去掉空格
+// splite() 字符串转数组
+// filter() 过滤
+// reverse() 反转
+// join() 合并
 
